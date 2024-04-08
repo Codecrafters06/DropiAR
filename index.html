@@ -1,22 +1,104 @@
 <html>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="./libs/mindar-image-three.prod.js"></script>
+    <script src="./main.js" type="module"></script>
 
-<head>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <script src="./libs/mindar/mindar-image-three.prod.js"></script>
-  <script src="./main.js" type="module"></script>
-  <style>
-    html,
-    body {
-      position: relative;
-      margin: 0;
-      width: 100%;
-      height: 100%;
-      overflow: hidden
-    }
-  </style>
-</head>
+    <style>
+      html, body {
+        position: relative;
+        margin: 0;
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+      }
+      
+      #ar-div {
+        position: relative;
+        width: 100%;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        background: #0000ff;
+        opacity: 0.6;
+        color: white;
+      }
 
-<body>
-</body>
+      #gif {
+        max-width: 100%;
+        max-height: 70%;
+      }
 
+      #boton {
+        margin-top: 20px;
+        padding: 30px 50px;
+        font-size: 90px; /* Tamaño original: 30px */
+        border-radius: 30px;
+      }
+
+      #texto {
+        margin-top: 20px;
+        font-size: 60px; /* Tamaño original: 20px */
+
+      }
+
+      #boton2 {
+        padding: 15px 30px;
+        font-size: 60px; /* Tamaño original: 20px */
+        border-radius: 15px;
+      }
+
+      #regresar {
+      position: fixed;
+      bottom: 5px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 10;
+      }
+
+      .hidden {
+        display: none;
+      }
+    </style>
+
+  </head>
+  <body>
+    <div id="ar-div">
+      <img id="gif" src="./assets/dropiblender.gif">
+      <br>
+      <div id="texto" class="hidden">¿Qué medidas se toman en Barcelona con respecto a la sequía??
+        <br>
+        <button id="boton2">Respuesta: El Ayuntamiento de Barcelona está desplegando el Plan de recursos hídricos alternativos. Este plan busca sustituir el consumo de agua potable por otros recursos hídricos en usos que no requieren la calidad del agua de boca.</button>
+      </div>
+      <br>
+      <button id="boton">♦♦♦Aqua Quest♦♦♦</button>
+    </div>
+
+    <button id="regresar">Regresar</button>
+    
+    <script>
+      const boton = document.getElementById('boton');
+      const gif = document.getElementById('gif');
+      const texto = document.getElementById('texto');
+      const boton2 = document.getElementById('boton2');
+      const boton3 = document.getElementById('boton3');
+
+      boton.addEventListener('click', function() {
+        gif.style.display = 'none';
+        texto.classList.remove('hidden');
+        boton.style.display = 'none';
+      });
+
+      boton2.addEventListener('click', function() {
+        texto.innerHTML = " Además, existe un Protocolo por situación de sequía para una gestión más eficiente del agua: Informate mas sobre la emergencia hidrica. ";
+      });
+
+      boton3.addEventListener('click', function() {
+        // Aquí puedes agregar la funcionalidad que desees para el botón3
+        console.log("Botón 'regresar' clickeado");
+      });
+    </script>
+  </body>
 </html>

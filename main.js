@@ -1,30 +1,26 @@
-import { loadGLTF } from "./libs/loader.js";
-
+import { CSS3DObject } from './libs/CSS3DRenderer.js';
 const THREE = window.MINDAR.IMAGE.THREE;
 
 document.addEventListener('DOMContentLoaded', () => {
-  const start = async () => {
-
+  const start = async() => {
     const mindarThree = new window.MINDAR.IMAGE.MindARThree({
       container: document.body,
-      imageTargetSrc: './assets/targets.mind',
+      imageTargetSrc: './assets/targetsDropi.mind',
     });
-    const { renderer, scene, camera } = mindarThree;
+    const {renderer, cssRenderer, scene, cssScene, camera} = mindarThree;
 
-    const light = new THREE.HemisphereLight(0xffffff, 0xbbbbff, 1);
-    scene.add(light);
+    const obj = new CSS3DObject(document.querySelector("#ar-div"));
+    const cssAnchor = mindarThree.addCSSAnchor(0);
+    cssAnchor.group.add(obj);
 
-    const gltf = await loadGLTF('./assets/Dropi3D.glb');
-    gltf.scene.scale.set(3, 3, 3);
-    gltf.scene.position.set(0, -0.2, 0);
-
-    const anchor = mindarThree.addAnchor(0);
-    anchor.group.add(gltf.scene);
+    document.querySelector("#regresar").addEventListener("click", () => {
+      window.location.href = "https://museodelasaiguas.netlify.app/";
+    });
+  
 
     await mindarThree.start();
     renderer.setAnimationLoop(() => {
-
-      renderer.render(scene, camera);
+      cssRenderer.render(cssScene, camera);
     });
   }
   start();
